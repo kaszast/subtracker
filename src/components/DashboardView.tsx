@@ -15,6 +15,7 @@ import {
   FileDown,
   Clock
 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
 interface DashboardViewProps {
   subscriptions: Subscription[];
@@ -31,6 +32,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   onEditSubscription,
   onDownloadPdf
 }) => {
+  const { t } = useLanguage();
   const dailyAverageHuf = Math.round(stats.totalMonthlyHuf / 30);
   const activeSubs = subscriptions.filter(s => s.isActive);
   const trialSubs = subscriptions.filter(s => s.isTrial && s.isActive);
@@ -58,7 +60,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             {formatMoney(stats.totalMonthlyHuf, 'HUF')}
           </div>
           <div className="text-xs text-muted-foreground mt-2 flex items-center gap-1.5">
-            <span className="text-foreground/75 font-medium">~{formatMoney(dailyAverageHuf, 'HUF')}</span> / nap átlagosan
+            <span className="text-foreground/75 font-medium">~{formatMoney(dailyAverageHuf, 'HUF')}</span> / {t('dailyAvg')}
           </div>
         </div>
 
@@ -74,7 +76,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             {formatMoney(stats.totalYearlyHuf, 'HUF')}
           </div>
           <div className="text-xs text-muted-foreground mt-2">
-            12 havi aktuális állapot alapján
+            Based on 12 months current state
           </div>
         </div>
 
@@ -95,7 +97,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 {subscriptions.length - stats.activeCount} db szüneteltetve
               </span>
             ) : (
-              'Minden felvitt tétel aktív'
+              'All tracked items active'
             )}
           </div>
         </div>
@@ -112,7 +114,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             {stats.upcomingCount7Days} <span className="text-sm font-normal text-muted-foreground">esedékes</span>
           </div>
           <div className="text-xs text-muted-foreground mt-2">
-            Következő 7 napban várható
+            Expected in next 7 days
           </div>
         </div>
       </div>
@@ -152,10 +154,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <div>
               <h3 className="font-bold text-sm sm:text-base text-foreground flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-primary" />
-                Hamarosan esedékes levonások
+                {t('upcoming7Days')}
               </h3>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Következő 7 nap eseményei naptári sorrendben
+                Next 7 days events in order
               </p>
             </div>
             <button
@@ -169,7 +171,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
           {stats.upcomingSubscriptions.length === 0 ? (
             <div className="py-8 text-center text-xs text-muted-foreground">
-              A következő 7 napban nincs esedékes fizetendő tétel.
+              {t('noUpcoming')}
             </div>
           ) : (
             <div className="space-y-3">
@@ -221,10 +223,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <div>
                 <h3 className="font-bold text-sm sm:text-base text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-500" />
-                  Legnagyobb költségtényezők
+                  Top Expenses
                 </h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  Havi egyenérték szerint csökkenő sorrendben
+                  Sorted by monthly equivalent
                 </p>
               </div>
               <button
@@ -256,7 +258,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                           {sub.name}
                         </div>
                         <div className="text-xs text-muted-foreground truncate">
-                          {sub.category} &bull; {percentOfTotal}% az összköltségből
+                          {sub.category} &bull; {percentOfTotal}% of total
                         </div>
                       </div>
                     </div>
@@ -277,14 +279,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           {/* Alsó gyorsművelet sáv */}
           <div className="pt-5 mt-5 border-t border-border flex items-center justify-between gap-3">
             <span className="text-xs text-muted-foreground">
-              Jelentés készítése:
+              Generate report:
             </span>
             <button
               onClick={onDownloadPdf}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-card hover:bg-muted text-xs font-semibold text-foreground transition-all shadow-sm"
             >
               <FileDown className="w-3.5 h-3.5 text-primary" />
-              PDF Kimutatás letöltése
+              {t('downloadPdf')}
             </button>
           </div>
         </div>

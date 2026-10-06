@@ -11,6 +11,7 @@ import {
   Clock,
   ExternalLink
 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
 interface CalendarViewProps {
   subscriptions: Subscription[];
@@ -21,6 +22,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   subscriptions,
   onEditSubscription
 }) => {
+  const { t } = useLanguage();
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const [selectedDayDate, setSelectedDayDate] = useState<string | null>(null);
 
@@ -258,7 +260,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
             <div className="border-b border-border pb-3 mb-4">
               <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
-                {selectedDayDate ? `Napi részletek: ${selectedDayDate}` : 'Válassz egy napot!'}
+                {selectedDayDate ? `{t('dailyDetails')}: ${selectedDayDate}` : 'Válassz egy napot!'}
               </h3>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Kattints a naptár bármelyik cellájára a részletekért

@@ -13,6 +13,7 @@ import {
   TrendingDown,
   Info
 , Calendar } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 import { 
   PieChart, 
   Pie, 
@@ -36,6 +37,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
   stats,
   onDownloadPdf
 }) => {
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -83,7 +85,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
         <div>
           <h2 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
             <PieChartIcon className="w-5 h-5 text-primary" />
-            Pénzügyi Statisztikák és Elemzések
+            {t('analyticsTitle')} és Elemzések
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
             Részletes kiadási struktúra kategóriák, devizák és fizetési kártyák szerint
@@ -102,7 +104,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
       {/* Diagramok 2 oszlopban */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        {/* Kategóriák szerinti megoszlás kördiagram */}
+        {/* {t('catBreakdown')} kördiagram */}
         <div className="p-5 rounded-2xl bg-card border border-border shadow-sm flex flex-col justify-between">
           <div className="border-b border-border pb-3 mb-4">
             <h3 className="font-bold text-sm text-foreground flex items-center gap-2">
@@ -161,7 +163,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
                     </div>
                     <div className="flex items-center gap-3 shrink-0 font-medium">
                       <span className="text-muted-foreground">{cat.percentage}%</span>
-                      <span className="font-bold text-foreground">{formatMoney(cat.monthlyTotalHuf, 'HUF')} / hó</span>
+                      <span className="font-bold text-foreground">{formatMoney(cat.monthlyTotalHuf, 'HUF')} / {t('monthly')}</span>
                     </div>
                   </div>
                   <div className="pl-5 space-y-1">
@@ -254,12 +256,12 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
           <div>
             <h3 className="font-bold text-sm text-foreground flex items-center gap-2">
               <Calendar className="w-4 h-4 text-indigo-500" />
-              Éves Költségvetés Szolgáltatásonként
+              {t('yearlyBudgetTitle')}
             </h3>
-            <p className="text-xs text-muted-foreground mt-0.5">Mennyibe kerülnek az egyes előfizetések 1 év alatt?</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t('yearlyBudgetDesc')}</p>
           </div>
           <div className="text-right">
-            <p className="text-xs text-muted-foreground">Összesített Éves Költség</p>
+            <p className="text-xs text-muted-foreground">{t('totalYearlyCost')}</p>
             <p className="text-sm font-bold text-foreground">{formatMoney(stats.totalYearlyHuf, 'HUF')}</p>
           </div>
         </div>
@@ -284,7 +286,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
       </div>
 
 
-      {/* Optimalizációs és Költségcsökkentési Ötletek */}
+      {/* {t('optimizationTips')} */}
       <div className="p-5 rounded-2xl bg-secondary/30 border border-border">
         <h3 className="font-bold text-sm text-foreground flex items-center gap-2 mb-3">
           <Sparkles className="w-4 h-4 text-amber-500" />

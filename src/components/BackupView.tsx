@@ -12,6 +12,7 @@ import {
   AlertTriangle,
   HardDrive
 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
 interface BackupViewProps {
   subscriptions: Subscription[];
@@ -22,6 +23,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
   subscriptions,
   onRefreshData
 }) => {
+  const { t } = useLanguage();
   const [importMode, setImportMode] = useState<'replace' | 'merge'>('replace');
   const [isImporting, setIsImporting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
@@ -117,7 +119,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
 
       setStatusMessage({
         type: 'success',
-        text: `Sikeres importálás: ${data.count} db előfizetés betöltve!`
+        text: `{t('successImport')}: ${data.count} db előfizetés betöltve!`
       });
 
       await onRefreshData();
@@ -125,7 +127,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
       console.error(err);
       setStatusMessage({
         type: 'error',
-        text: `Hiba az importálás során: ${err.message}`
+        text: `{t('errorImport')}: ${err.message}`
       });
     } finally {
       setIsImporting(false);

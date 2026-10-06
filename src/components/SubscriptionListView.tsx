@@ -17,6 +17,7 @@ import { Archive,
   Power,
   AlertCircle
  } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
 interface SubscriptionListViewProps {
   subscriptions: Subscription[];
@@ -35,6 +36,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
   onToggleStatus,
   onOpenNewModal
 }) => {
+  const { t } = useLanguage();
   const [showArchived, setShowArchived] = useState(false);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -229,7 +231,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                             ? 'text-emerald-500 hover:bg-emerald-500/10'
                             : 'text-muted-foreground hover:bg-muted'
                         }`}
-                        title={sub.isActive ? 'Szüneteltetés' : 'Aktiválás'}
+                        title={sub.isActive ? t('pausedSub') : t('activeSub')}
                       >
                         <Power className="w-3.5 h-3.5" />
                       </button>
@@ -257,7 +259,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                   {/* Címkék (Trial, Ciklus, Fizetési mód) */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground border border-border/50">
-                      {sub.billingCycle === 'monthly' ? 'Havi' : sub.billingCycle === 'yearly' ? 'Éves' : sub.billingCycle === 'quarterly' ? 'Negyedéves' : 'Heti'}
+                      {sub.billingCycle === 'monthly' ? t('monthly') : sub.billingCycle === 'yearly' ? t('yearly') : sub.billingCycle === 'quarterly' ? t('quarterly') : t('weekly')}
                     </span>
                     {sub.paymentMethod && (
                       <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground border border-border/50">
@@ -350,7 +352,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                               : 'bg-muted text-muted-foreground'
                           }`}
                         >
-                          {sub.status === 'archived' ? 'Archivált' : sub.isActive ? 'Aktív' : 'Szünetel'}
+                          {sub.status === 'archived' ? t('archivedSub') : sub.isActive ? t('activeSub') : t('pausedSub')}
                         </span>
                       </td>
                       <td className="py-3 px-4 text-right">
