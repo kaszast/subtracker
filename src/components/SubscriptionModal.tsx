@@ -17,7 +17,7 @@ import {
   Check,
   TrendingUp
 } from 'lucide-react';
-import { useLanguage, getTranslatedCategory } from '@/lib/i18n';
+import { useLanguage, getTranslatedCategory, getTranslatedPresetDescription } from '@/lib/i18n';
 
 interface SubscriptionModalProps {
   isOpen: boolean;
@@ -236,7 +236,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   className="px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                 >
-                  <option value="all">Minden kategória</option>
+                  <option value="all">{t('allCategories')}</option>
                   {ALL_CATEGORIES.map(cat => (
                     <option key={getTranslatedCategory(t, cat)} value={getTranslatedCategory(t, cat)}>{getTranslatedCategory(t, cat)}</option>
                   ))}
@@ -266,7 +266,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                       </div>
                       {preset.description && (
                         <p className="text-[10px] text-muted-foreground/80 mt-1 line-clamp-1">
-                          {preset.description}
+                          {getTranslatedPresetDescription(t, preset.id, preset.description)}
                         </p>
                       )}
                     </div>
@@ -289,7 +289,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Netflix"
+                    placeholder={t('placeholderName')}
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   />
                 </div>
@@ -304,7 +304,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     required
                     value={amount}
                     onChange={(e) => setAmount(e.target.value === '' ? '' : parseFloat(e.target.value))}
-                    placeholder="e.g. 3490"
+                    placeholder={t('placeholderAmount')}
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   />
                 </div>
@@ -396,7 +396,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     type="url"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    placeholder="https://..."
+                    placeholder={t('placeholderUrl')}
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   />
                 </div>
@@ -462,7 +462,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                   rows={2}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="e.g. Family plan..."
+                  placeholder={t('placeholderNotes')}
                   className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                 />
               </div>
@@ -475,7 +475,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     {t('priceHistory')}
                   </h4>
                   {loadingHistory ? (
-                    <div className="text-[11px] text-muted-foreground">Betöltés...</div>
+                    <div className="text-[11px] text-muted-foreground">{t('loading')}</div>
                   ) : history.length > 0 ? (
                     <div className="space-y-2">
                       {history.map((h, i) => (

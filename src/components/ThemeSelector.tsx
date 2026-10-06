@@ -4,8 +4,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { THEMES, DEFAULT_THEME_ID } from '@/lib/themes';
 import { ThemeId } from '@/types';
 import { Palette, Check, Moon, Sun } from 'lucide-react';
+import { useLanguage, getTranslatedThemeDescription } from '@/lib/i18n';
 
 export const ThemeSelector: React.FC = () => {
+  const { t } = useLanguage();
   const [currentTheme, setCurrentTheme] = useState<ThemeId>(DEFAULT_THEME_ID);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -46,7 +48,7 @@ export const ThemeSelector: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-card hover:bg-muted text-card-foreground text-xs sm:text-sm font-medium transition-colors shadow-sm"
-        title="Téma módosítása"
+        title={t('changeTheme')}
       >
         <span
           className="w-3.5 h-3.5 rounded-full border border-black/10 shrink-0 shadow-inner"
@@ -62,7 +64,7 @@ export const ThemeSelector: React.FC = () => {
             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               10 Dizájn Téma
             </span>
-            <span className="text-[11px] text-muted-foreground">Azonnali váltás</span>
+            <span className="text-[11px] text-muted-foreground">{t('immediateSwitch')}</span>
           </div>
 
           <div className="max-h-80 overflow-y-auto space-y-1 pr-1">
@@ -99,7 +101,7 @@ export const ThemeSelector: React.FC = () => {
                         )}
                       </div>
                       <div className="text-[10px] text-muted-foreground truncate max-w-[190px]">
-                        {theme.description}
+                        {getTranslatedThemeDescription(t, theme.id) || theme.description}
                       </div>
                     </div>
                   </div>

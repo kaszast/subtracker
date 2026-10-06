@@ -146,7 +146,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className="text-xs text-muted-foreground">Nincs elegendő adat a diagramhoz</div>
+              <div className="text-xs text-muted-foreground">{t('notEnoughData')}</div>
             )}
           </div>
 
@@ -222,7 +222,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="text-xs text-muted-foreground">Nincs elegendő adat a diagramhoz</div>
+              <div className="text-xs text-muted-foreground">{t('notEnoughData')}</div>
             )}
           </div>
 

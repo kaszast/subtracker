@@ -137,7 +137,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
               className={`p-1.5 rounded-lg text-xs transition-colors ${
                 viewMode === 'grid' ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
               }`}
-              title="Kártya nézet"
+              title={t('cardView')}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
             </button>
@@ -146,7 +146,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
               className={`p-1.5 rounded-lg text-xs transition-colors ${
                 viewMode === 'table' ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
               }`}
-              title="Táblázat nézet"
+              title={t('tableView')}
             >
               <List className="w-3.5 h-3.5" />
             </button>
@@ -160,7 +160,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
       {sorted.length === 0 ? (
         <div className="p-12 text-center rounded-2xl bg-card border border-border">
           <AlertCircle className="w-8 h-8 mx-auto text-muted-foreground mb-3 opacity-60" />
-          <h3 className="text-sm font-semibold text-foreground">Nincs találat a megadott feltételekre</h3>
+          <h3 className="text-sm font-semibold text-foreground">{t('noResults')}</h3>
           <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto">
             Próbáld módosítani a keresési vagy szűrési feltételeket, vagy rögzíts új előfizetést.
           </p>
@@ -215,7 +215,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => {
-                          if (confirm(`Biztosan ${sub.status === 'archived' ? 'visszaállítod' : 'archiválod'} ezt az előfizetést?`)) {
+                          if (confirm(sub.status === 'archived' ? t('confirmRestore') : t('confirmArchive'))) {
                             onArchive(sub);
                           }
                         }}
@@ -238,7 +238,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                       <button
                         onClick={() => onEdit(sub)}
                         className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                        title="Szerkesztés"
+                        title={t('edit')}
                       >
                         <Edit2 className="w-3.5 h-3.5" />
                       </button>
@@ -249,7 +249,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                           }
                         }}
                         className="p-1.5 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
-                        title="Törlés"
+                        title={t('delete')}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -308,15 +308,15 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
             <table className="w-full text-left text-xs">
               <thead className="bg-secondary/40 border-b border-border text-muted-foreground font-semibold">
                 <tr>
-                  <th className="py-3 px-4">Szolgáltatás</th>
-                  <th className="py-3 px-4">Kategória</th>
-                  <th className="py-3 px-4">Összeg</th>
-                  <th className="py-3 px-4">Ciklus</th>
+                  <th className="py-3 px-4">{t('colService')}</th>
+                  <th className="py-3 px-4">{t('colCategory')}</th>
+                  <th className="py-3 px-4">{t('colAmount')}</th>
+                  <th className="py-3 px-4">{t('colCycle')}</th>
                   <th className="py-3 px-4">{t('monthlyEquiv')}</th>
                   <th className="py-3 px-4">{t('sortDate')}</th>
-                  <th className="py-3 px-4">Fizetési mód</th>
-                  <th className="py-3 px-4">Státusz</th>
-                  <th className="py-3 px-4 text-right">Műveletek</th>
+                  <th className="py-3 px-4">{t('colPayment')}</th>
+                  <th className="py-3 px-4">{t('colStatus')}</th>
+                  <th className="py-3 px-4 text-right">{t('colActions')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -359,7 +359,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                         <div className="flex items-center justify-end gap-1">
                           <button
                         onClick={() => {
-                          if (confirm(`Biztosan ${sub.status === 'archived' ? 'visszaállítod' : 'archiválod'} ezt az előfizetést?`)) {
+                          if (confirm(sub.status === 'archived' ? t('confirmRestore') : t('confirmArchive'))) {
                             onArchive(sub);
                           }
                         }}
@@ -370,7 +370,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                       </button>
                       <button
                             onClick={() => {
-                              if (confirm(`Biztosan ${sub.status === 'archived' ? 'visszaállítod' : 'archiválod'} ezt az előfizetést?`)) {
+                              if (confirm(sub.status === 'archived' ? t('confirmRestore') : t('confirmArchive'))) {
                                 onArchive(sub);
                               }
                             }}
@@ -382,14 +382,14 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                           <button
                             onClick={() => onToggleStatus(sub)}
                             className="p-1 rounded text-muted-foreground hover:text-emerald-500"
-                            title="Státusz váltása"
+                            title={t('toggleStatus')}
                           >
                             <Power className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => onEdit(sub)}
                             className="p-1 rounded text-muted-foreground hover:text-foreground"
-                            title="Szerkesztés"
+                            title={t('edit')}
                           >
                             <Edit2 className="w-3.5 h-3.5" />
                           </button>
@@ -400,7 +400,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                               }
                             }}
                             className="p-1 rounded text-muted-foreground hover:text-destructive"
-                            title="Törlés"
+                            title={t('delete')}
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>

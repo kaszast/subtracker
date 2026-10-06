@@ -11,7 +11,7 @@ export async function GET(
     const { id } = await params;
     const sub = getSubscriptionById(id);
     if (!sub) {
-      return NextResponse.json({ success: false, error: 'Előfizetés nem található' }, { status: 404 });
+      return NextResponse.json({ success: false, error: 'Subscription not found' }, { status: 404 });
     }
     return NextResponse.json({ success: true, data: sub });
   } catch (error: any) {
@@ -35,7 +35,7 @@ export async function PUT(
     });
 
     if (!updated) {
-      return NextResponse.json({ success: false, error: 'Előfizetés nem található' }, { status: 404 });
+      return NextResponse.json({ success: false, error: 'Subscription not found' }, { status: 404 });
     }
 
     return NextResponse.json({ success: true, data: updated });
@@ -52,7 +52,7 @@ export async function DELETE(
     const { id } = await params;
     const success = deleteSubscription(id);
     if (!success) {
-      return NextResponse.json({ success: false, error: 'Előfizetés nem található' }, { status: 404 });
+      return NextResponse.json({ success: false, error: 'Subscription not found' }, { status: 404 });
     }
     return NextResponse.json({ success: true, message: 'Előfizetés sikeresen törölve' });
   } catch (error: any) {

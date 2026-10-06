@@ -86,7 +86,7 @@ export default function Home() {
       setIsModalOpen(false);
       setEditingSub(null);
     } catch (err: any) {
-      alert(`Hiba történt: ${err.message}`);
+      alert(`${t('errorOccurred')} ${err.message}`);
     }
   };
 
@@ -116,7 +116,7 @@ export default function Home() {
       }
       await fetchSubscriptions();
     } catch (err: any) {
-      alert(`Hiba a törlés során: ${err.message}`);
+      alert(`${t('errorDelete')} ${err.message}`);
     }
   };
 
@@ -134,7 +134,7 @@ export default function Home() {
       }
       await fetchSubscriptions();
     } catch (err: any) {
-      alert(`Hiba: ${err.message}`);
+      alert(`${t('error')} ${err.message}`);
     }
   };
 
@@ -144,7 +144,7 @@ export default function Home() {
       generatePdfReport(subscriptions, stats, t);
     } catch (err) {
       console.error(err);
-      alert('Nem sikerült generálni a PDF riportot.');
+      alert(t('errorPdf'));
     }
   };
 
@@ -169,7 +169,7 @@ export default function Home() {
           </div>
         ) : error ? (
           <div className="p-6 rounded-2xl bg-destructive/10 border border-destructive/30 text-destructive text-center">
-            <h3 className="font-bold text-sm">Hiba az adatok betöltésekor</h3>
+            <h3 className="font-bold text-sm">{t('errorLoadingData')}</h3>
             <p className="text-xs mt-1">{error}</p>
             <button
               onClick={() => fetchSubscriptions()}
