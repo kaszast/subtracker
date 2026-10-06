@@ -5,7 +5,7 @@ import { LanguageProvider } from '@/lib/i18n';
 
 export const metadata: Metadata = {
   title: 'SubTracker - Modern Előfizetés Kezelő',
-  description: 'Kezeld az összes előfizetésedet egy helyen: havi költségek, naptár nézet, statisztikák, PDF riport és adatmentés.',
+  description: 'Manage all your subscriptions in one place: monthly costs, calendar view, statistics, PDF report, and backup.',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,

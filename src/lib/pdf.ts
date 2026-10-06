@@ -2,6 +2,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { Subscription, MonthlyStats } from '@/types';
 import { formatMoney, getMonthlyEquivalentHuf } from './calculator';
+import { getTranslatedCategory } from '@/lib/i18n';
 
 // A jsPDF szabványos Helvetica betűtípusa WinAnsi kódolású, ami nem tartalmazza az ő/ű karaktereket.
 // A cleanText átkonvertálja őket a teljesen támogatott szabványos ö/ü ékezetekre, megelőzve a 'Q' és hibás karaktereket.
@@ -14,7 +15,7 @@ function cleanText(str: string): string {
     .replace(/Ű/g, 'Ü');
 }
 
-export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyStats): void {
+export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyStats, t: any): void {
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
@@ -35,12 +36,12 @@ export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyS
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(15);
   doc.setFont('helvetica', 'bold');
-  doc.text(cleanText('ELŐFIZETÉSI KIMUTATÁS ÉS PÉNZÜGYI JELENTÉS'), 14, 13);
+  doc.text(cleanText(t('pdfTitle')), 14, 13);
 
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(203, 213, 225);
-  doc.text(cleanText(`Készült: ${todayStr} | Valuta: HUF bázis`), 14, 21);
+  doc.text(cleanText(t('pdfGeneratedAt').replace('{date}', todayStr)), 14, 21);
 
   // Fő mutatószámok dobozok
   const startY = 36;
@@ -48,10 +49,10 @@ export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyS
   const boxHeight = 20;
 
   const kpis = [
-    { label: cleanText('Havi összköltség'), value: cleanText(formatMoney(stats.totalMonthlyHuf, 'HUF')) },
-    { label: cleanText('Éves összköltség'), value: cleanText(formatMoney(stats.totalYearlyHuf, 'HUF')) },
-    { label: cleanText('Aktív szolgáltatás'), value: `${stats.activeCount} db` },
-    { label: cleanText('Közelgő (7 nap)'), value: `${stats.upcomingCount7Days} db` }
+    { label: cleanText(t('pdfTotalMonthly')), value: cleanText(formatMoney(stats.totalMonthlyHuf, 'HUF')) },
+    { label: cleanText(t('pdfTotalYearly')), value: cleanText(formatMoney(stats.totalYearlyHuf, 'HUF')) },
+    { label: cleanText(t('pdfActive')), value: `${stats.activeCount} db` },
+    { label: cleanText(t('pdfUpcoming')), value: `${stats.upcomingCount7Days} db` }
   ];
 
   kpis.forEach((kpi, idx) => {
@@ -75,10 +76,10 @@ export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyS
   doc.setTextColor(15, 23, 42);
   doc.setFontSize(11);
   doc.setFont('helvetica', 'bold');
-  doc.text(cleanText('Kiadások kategóriák szerint'), 14, 66);
+  doc.text(cleanText(t('pdfExpensesByCategory')), 14, 66);
 
   const categoryRows = stats.categorySummaries.map(c => [
-    cleanText(c.category),
+    cleanText(getTranslatedCategory(t, c.category)),
     `${c.count} db`,
     cleanText(formatMoney(c.monthlyTotalHuf, 'HUF')),
     `${c.percentage}%`
@@ -86,7 +87,7 @@ export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyS
 
   autoTable(doc, {
     startY: 70,
-    head: [['Kategória', 'Előfizetések', 'Havi összeg', 'Részarány'].map(cleanText)],
+    head: [[t('pdfCategory'), t('pdfSubscriptions'), t('pdfMonthlyAmount'), t('pdfShare')].map(cleanText)],
     body: categoryRows,
     theme: 'grid',
     headStyles: {
@@ -111,22 +112,22 @@ export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyS
   doc.setTextColor(15, 23, 42);
   doc.setFontSize(11);
   doc.setFont('helvetica', 'bold');
-  doc.text(cleanText('Részletes előfizetési lista'), 14, lastTableEnd + 10);
+  doc.text(cleanText(t('pdfDetailedList')), 14, lastTableEnd + 10);
 
   const subRows = subscriptions.map(sub => [
-    cleanText(sub.name + (sub.isTrial ? ' (Próba)' : '')),
-    cleanText(sub.category),
+    cleanText(sub.name + (sub.isTrial ? t('pdfTrialSuffix') : '')),
+    cleanText(getTranslatedCategory(t, sub.category)),
     cleanText(formatMoney(sub.amount, sub.currency)),
-    cleanText(cycleLabel(sub.billingCycle)),
+    cleanText(cycleLabel(sub.billingCycle, t)),
     cleanText(formatMoney(Math.round(getMonthlyEquivalentHuf(sub)), 'HUF')),
     sub.nextBillingDate,
     cleanText(sub.paymentMethod || '-'),
-    sub.isActive ? cleanText('Aktív') : cleanText('Inaktív')
+    sub.isActive ? cleanText(t('pdfActiveStatus')) : cleanText(t('pdfInactiveStatus'))
   ]);
 
   autoTable(doc, {
     startY: lastTableEnd + 14,
-    head: [['Szolgáltatás', 'Kategória', 'Összeg', 'Ciklus', 'Havi HUF', 'Következő levonás', 'Fizetési mód', 'Státusz'].map(cleanText)],
+    head: [[t('pdfService'), t('pdfCategory'), t('pdfAmount'), t('pdfCycle'), t('pdfMonthlyHuf'), t('pdfNextBilling'), t('pdfPaymentMethod'), t('pdfStatus')].map(cleanText)],
     body: subRows,
     theme: 'striped',
     headStyles: {
@@ -150,7 +151,7 @@ export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyS
       doc.setFontSize(8);
       doc.setTextColor(148, 163, 184);
       doc.text(
-        cleanText(`Oldal ${currentPage} / ${pageCount} | Subscription Manager`),
+        cleanText(t('pdfPage').replace('{current}', currentPage.toString()).replace('{total}', pageCount.toString())),
         pageWidth / 2,
         doc.internal.pageSize.getHeight() - 8,
         { align: 'center' }
@@ -162,12 +163,12 @@ export function generatePdfReport(subscriptions: Subscription[], stats: MonthlyS
   doc.save(filename);
 }
 
-function cycleLabel(cycle: string): string {
+function cycleLabel(cycle: string, t: any): string {
   switch (cycle) {
-    case 'monthly': return 'Havi';
-    case 'yearly': return 'Éves';
-    case 'quarterly': return 'Negyedéves';
-    case 'weekly': return 'Heti';
+    case 'monthly': return t('monthly');
+    case 'yearly': return t('yearly');
+    case 'quarterly': return t('quarterly');
+    case 'weekly': return t('weekly');
     default: return cycle;
   }
 }

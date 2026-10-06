@@ -72,7 +72,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
     }));
 
   const pieChartData = stats.categorySummaries.map(c => ({
-    name: c.category,
+    name: getTranslatedCategory(t, c.category),
     value: c.monthlyTotalHuf,
     color: c.color
   }));
@@ -97,7 +97,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary hover:bg-accent text-primary-foreground text-xs font-semibold shadow-sm transition-all"
         >
           <FileDown className="w-4 h-4" />
-          <span>PDF Kimutatás letöltése</span>
+          <span>{t('downloadPdf')}</span>
         </button>
       </div>
 
@@ -135,7 +135,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
                     itemStyle={{ color: 'var(--foreground)' }}
                     labelStyle={{ color: 'var(--foreground)' }}
 
-                    formatter={(value: any) => [formatMoney(Number(value), 'HUF'), 'Havi költség']}
+                    formatter={(value: any) => [formatMoney(Number(value), 'HUF'), t('monthlyCost')]}
                     contentStyle={{
                       backgroundColor: 'var(--card)',
                       borderColor: 'var(--border)',
@@ -153,13 +153,13 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
           {/* Kategória jelmagyarázat lista részletezve */}
           <div className="space-y-4 mt-4 pt-4 border-t border-border">
             {stats.categorySummaries.map((cat) => {
-              const subsInCategory = activeSubs.filter(s => (s.category || 'Egyéb') === cat.category).sort((a, b) => getMonthlyEquivalentHuf(b) - getMonthlyEquivalentHuf(a));
+              const subsInCategory = activeSubs.filter(s => (s.category || 'Egyéb') === getTranslatedCategory(t, cat.category)).sort((a, b) => getMonthlyEquivalentHuf(b) - getMonthlyEquivalentHuf(a));
               return (
-                <div key={cat.category} className="text-xs">
+                <div key={getTranslatedCategory(t, cat.category)} className="text-xs">
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-2 truncate">
                       <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: cat.color }} />
-                      <span className="text-foreground font-semibold truncate">{cat.category}</span>
+                      <span className="text-foreground font-semibold truncate">{getTranslatedCategory(t, cat.category)}</span>
                     </div>
                     <div className="flex items-center gap-3 shrink-0 font-medium">
                       <span className="text-muted-foreground">{cat.percentage}%</span>
@@ -210,7 +210,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
                     itemStyle={{ color: 'var(--foreground)' }}
                     labelStyle={{ color: 'var(--foreground)' }}
 
-                    formatter={(value: any) => [formatMoney(Number(value), 'HUF'), 'Havi egyenérték']}
+                    formatter={(value: any) => [formatMoney(Number(value), 'HUF'), t('monthlyEquiv')]}
                     contentStyle={{
                       backgroundColor: 'var(--card)',
                       borderColor: 'var(--border)',

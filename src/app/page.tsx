@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { Subscription, MonthlyStats } from '@/types';
 import { calculateMonthlyStats } from '@/lib/calculator';
 import { generatePdfReport } from '@/lib/pdf';
@@ -14,6 +15,7 @@ import { SubscriptionModal } from '@/components/SubscriptionModal';
 import { Loader2 } from 'lucide-react';
 
 export default function Home() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [loading, setLoading] = useState(true);
@@ -139,7 +141,7 @@ export default function Home() {
   // PDF Riport letöltése
   const handleDownloadPdf = () => {
     try {
-      generatePdfReport(subscriptions, stats);
+      generatePdfReport(subscriptions, stats, t);
     } catch (err) {
       console.error(err);
       alert('Nem sikerült generálni a PDF riportot.');
@@ -238,8 +240,8 @@ export default function Home() {
       {/* Lábléc */}
       <footer className="border-t border-border py-4 bg-card/40 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-muted-foreground gap-2">
-          <span>SubTracker &bull; Teljesen privát, Dockerben futó előfizetés kezelő</span>
-          <span>SQLite helyi adatbázis &bull; 10 beépített stílustéma</span>
+          <span dangerouslySetInnerHTML={{ __html: t('footerSubtracker') }} />
+          <span dangerouslySetInnerHTML={{ __html: t('footerSqlite') }} />
         </div>
       </footer>
 

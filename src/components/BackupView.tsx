@@ -89,7 +89,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
     if (!file) return;
 
     if (importMode === 'replace') {
-      const confirmed = confirm('Figyelem: A teljes felülírás törli az összes jelenlegi előfizetésedet, és a fájl tartalmát tölti be helyettük. Biztosan folytatod?');
+      const confirmed = confirm(t('backupConfirm'));
       if (!confirmed) {
         event.target.value = '';
         return;
@@ -249,7 +249,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
             {/* Mód választó */}
             <div className="p-3 rounded-xl bg-secondary/30 border border-border mb-4 space-y-2">
               <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider block">
-                Beolvasás módja
+                {t('readMode')}
               </span>
               
               <label className="flex items-center gap-2 text-xs text-foreground cursor-pointer">
@@ -261,7 +261,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
                   onChange={() => setImportMode('replace')}
                   className="text-primary focus:ring-primary"
                 />
-                <span><strong>Teljes felülírás</strong> (Jelenlegi adatok törlése)</span>
+                <span><strong>{t('backupOverwrite')}</strong> {t('backupOverwriteDesc')}</span>
               </label>
 
               <label className="flex items-center gap-2 text-xs text-foreground cursor-pointer">
@@ -273,7 +273,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
                   onChange={() => setImportMode('merge')}
                   className="text-primary focus:ring-primary"
                 />
-                <span><strong>Összefésülés</strong> (Meglévők megtartása és bővítése)</span>
+                <span><strong>{t('backupMerge')}</strong> {t('backupMergeDesc')}</span>
               </label>
             </div>
 
