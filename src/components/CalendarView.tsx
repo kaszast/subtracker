@@ -38,7 +38,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   let startDayOfWeek = firstDayOfMonth.getDay();
   startDayOfWeek = startDayOfWeek === 0 ? 6 : startDayOfWeek - 1; // 0: Hétfő, 6: Vasárnap
 
-  // Előző hónap napjai a rács elején
+  // {t('prevMonth')} napjai a rács elején
   const prevMonthLastDay = new Date(year, month, 0).getDate();
   const prevMonthDays = [];
   for (let i = startDayOfWeek - 1; i >= 0; i--) {
@@ -103,11 +103,11 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   };
 
   const monthNames = [
-    'Január', 'Február', 'Március', 'Április', 'Május', 'Június',
-    'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'
+    t('jan'), t('feb'), t('mar'), t('apr'), t('may'), t('jun'),
+    t('jul'), t('aug'), t('sep'), t('oct'), t('nov'), t('dec')
   ];
 
-  const weekDayNames = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat', 'Vasárnap'];
+  const weekDayNames = [t('mon'), t('tue'), t('wed'), t('thu'), t('fri'), t('sat'), t('sun')];
 
   const today = new Date();
   const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
@@ -139,7 +139,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               {year}. {monthNames[month]}
             </h2>
             <p className="text-xs text-muted-foreground">
-              Várható levonások a hónapban: ~{formatMoney(Math.round(monthlyTotalDue), 'HUF')}
+              {t('expectedDeduction')} ~{formatMoney(Math.round(monthlyTotalDue), 'HUF')}
             </p>
           </div>
         </div>
@@ -154,14 +154,14 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
           <button
             onClick={handlePrevMonth}
             className="p-1.5 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            title="Előző hónap"
+            title="{t('prevMonth')}"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={handleNextMonth}
             className="p-1.5 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            title="Következő hónap"
+            title="{t('nextMonth')}"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -183,7 +183,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
           {/* Napok cellái */}
           <div className="grid grid-cols-7 gap-1 sm:gap-2 auto-rows-fr">
             
-            {/* Előző hónap szürke napjai */}
+            {/* {t('prevMonth')} szürke napjai */}
             {prevMonthDays.map((pDay, idx) => (
               <div
                 key={`prev-${idx}`}
@@ -260,17 +260,17 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
             <div className="border-b border-border pb-3 mb-4">
               <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
-                {selectedDayDate ? `{t('dailyDetails')}: ${selectedDayDate}` : 'Válassz egy napot!'}
+                {selectedDayDate ? `{t('dailyDetails')}: ${selectedDayDate}` : t('selectDay')}
               </h3>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Kattints a naptár bármelyik cellájára a részletekért
+                {t('clickDayDetails')}
               </p>
             </div>
 
             {selectedDayDate ? (
               selectedDaySubs.length === 0 ? (
                 <div className="py-8 text-center text-xs text-muted-foreground">
-                  Ezen a napon nincs esedékes levonás.
+                  {t('noEventsToday')}
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -292,7 +292,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                       </div>
                       {sub.paymentMethod && (
                         <div className="text-[10px] text-muted-foreground mt-1">
-                          Fizetés: {sub.paymentMethod}
+                          {t('payment')}: {sub.paymentMethod}
                         </div>
                       )}
                     </div>
@@ -301,13 +301,13 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               )
             ) : (
               <div className="py-8 text-center text-xs text-muted-foreground">
-                Kattints egy naptári napra, ahol előfizetés található, hogy megtekinthesd a részleteit vagy szerkeszd.
+                {t('clickDayDesc')}
               </div>
             )}
           </div>
 
           <div className="pt-4 border-t border-border mt-4 text-[11px] text-muted-foreground">
-            A havi előfizetések automatikusan minden hónap adott napján szerepelnek a naptárban.
+            {t('autoMonthlyDesc')}
           </div>
         </div>
 

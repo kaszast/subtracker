@@ -89,7 +89,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Keresés név, kártya vagy megjegyzés szerint..."
+            placeholder="{t('searchPlaceholder')}"
             className="w-full pl-9 pr-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
           />
         </div>
@@ -102,7 +102,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
           >
-            <option value="all">Minden kategória</option>
+            <option value="all">{t('allCategories')}</option>
             {ALL_CATEGORIES.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
             ))}
@@ -113,7 +113,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
             onChange={(e) => setSelectedStatus(e.target.value as any)}
             className="px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
           >
-            <option value="all">Minden státusz</option>
+            <option value="all">{t('filterAll')}</option>
             <option value="active">Csak aktív</option>
             <option value="inactive">Szüneteltetett</option>
             <option value="trial">Csak próbaidőszak</option>
@@ -124,7 +124,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
             onChange={(e) => setSortBy(e.target.value as any)}
             className="px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
           >
-            <option value="date">Következő levonás</option>
+            <option value="date">{t('sortDate')}</option>
             <option value="cost-desc">Legdrágább (Havi)</option>
             <option value="cost-asc">Legolcsóbb (Havi)</option>
             <option value="name">Név (A-Z)</option>
@@ -278,7 +278,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                 <div className="pt-3 border-t border-border flex items-end justify-between">
                   <div>
                     <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">
-                      Következő levonás
+                      {t('sortDate')}
                     </span>
                     <span className="text-xs font-semibold text-foreground">
                       {sub.nextBillingDate}
@@ -313,7 +313,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                   <th className="py-3 px-4">Összeg</th>
                   <th className="py-3 px-4">Ciklus</th>
                   <th className="py-3 px-4">Havi egyenérték</th>
-                  <th className="py-3 px-4">Következő levonás</th>
+                  <th className="py-3 px-4">{t('sortDate')}</th>
                   <th className="py-3 px-4">Fizetési mód</th>
                   <th className="py-3 px-4">Státusz</th>
                   <th className="py-3 px-4 text-right">Műveletek</th>

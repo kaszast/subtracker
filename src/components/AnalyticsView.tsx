@@ -88,7 +88,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
             {t('analyticsTitle')} és Elemzések
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
-            Részletes kiadási struktúra kategóriák, devizák és fizetési kártyák szerint
+            {t('analyticsDesc')}
           </p>
         </div>
 
@@ -109,9 +109,9 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
           <div className="border-b border-border pb-3 mb-4">
             <h3 className="font-bold text-sm text-foreground flex items-center gap-2">
               <PieChartIcon className="w-4 h-4 text-primary" />
-              Kiadások megoszlása kategóriák szerint
+              {t('catBreakdown')}
             </h3>
-            <p className="text-xs text-muted-foreground mt-0.5">Havi egyenérték arányában</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t('catBreakdownDesc')}</p>
           </div>
 
           <div className="h-64 w-full flex items-center justify-center">
@@ -185,9 +185,9 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({
           <div className="border-b border-border pb-3 mb-4">
             <h3 className="font-bold text-sm text-foreground flex items-center gap-2">
               <BarChart3 className="w-4 h-4 text-emerald-500" />
-              Legnagyobb havi tételek összehasonlítása
+              {t('yearlyBudgetTitle')}
             </h3>
-            <p className="text-xs text-muted-foreground mt-0.5">Top előfizetések költsége HUF-ban</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t('yearlyBudgetDesc')}</p>
           </div>
 
           <div className="h-64 w-full flex items-center justify-center">

@@ -146,10 +146,10 @@ export const BackupView: React.FC<BackupViewProps> = ({
           </div>
           <div>
             <h2 className="text-base sm:text-lg font-bold text-foreground">
-              Adatmentés és Visszaállítás (Backup & Restore)
+              {t('backupTitle')}
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Mentsd le az adataidat biztonsági mentésként vagy tölts vissza egy korábbi állapotot.
+              {t('backupDesc')}
             </p>
           </div>
         </div>
@@ -182,10 +182,10 @@ export const BackupView: React.FC<BackupViewProps> = ({
             <div className="border-b border-border pb-3 mb-4">
               <h3 className="font-bold text-sm text-foreground flex items-center gap-2">
                 <Download className="w-4 h-4 text-primary" />
-                Adatok Exportálása
+                {t('exportData')}
               </h3>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Jelenleg rögzített előfizetések száma: {subscriptions.length} db
+                {t('currentSaved')} {subscriptions.length} db
               </p>
             </div>
 
@@ -196,15 +196,15 @@ export const BackupView: React.FC<BackupViewProps> = ({
                     <FileJson className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-foreground">JSON Biztonsági Mentés</div>
-                    <div className="text-[11px] text-muted-foreground">Teljes visszaállításhoz szükséges formátum</div>
+                    <div className="text-xs font-bold text-foreground">{t('downloadBackup')}</div>
+                    <div className="text-[11px] text-muted-foreground">{t('formatDesc')}</div>
                   </div>
                 </div>
                 <button
                   onClick={handleExportJson}
                   className="px-3 py-1.5 rounded-lg bg-primary hover:bg-accent text-primary-foreground text-xs font-semibold shadow-sm transition-colors"
                 >
-                  Letöltés
+                  {t('download')}
                 </button>
               </div>
 
@@ -214,22 +214,22 @@ export const BackupView: React.FC<BackupViewProps> = ({
                     <FileSpreadsheet className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-foreground">CSV Táblázat</div>
-                    <div className="text-[11px] text-muted-foreground">Excel, Google Sheets elemzéshez</div>
+                    <div className="text-xs font-bold text-foreground">{t('csvTitle')}</div>
+                    <div className="text-[11px] text-muted-foreground">{t('csvDesc')}</div>
                   </div>
                 </div>
                 <button
                   onClick={handleExportCsv}
                   className="px-3 py-1.5 rounded-lg border border-border hover:bg-muted text-foreground text-xs font-semibold shadow-sm transition-colors"
                 >
-                  Letöltés
+                  {t('download')}
                 </button>
               </div>
             </div>
           </div>
 
           <div className="pt-4 border-t border-border mt-4 text-[11px] text-muted-foreground">
-            A JSON mentés minden mezőt (színek, ikonok, deviza, jegyzetek) megőriz.
+            {t('jsonPreserve')}
           </div>
         </div>
 
@@ -239,10 +239,10 @@ export const BackupView: React.FC<BackupViewProps> = ({
             <div className="border-b border-border pb-3 mb-4">
               <h3 className="font-bold text-sm text-foreground flex items-center gap-2">
                 <Upload className="w-4 h-4 text-emerald-500" />
-                Biztonsági Mentés Visszatöltése
+                {t('restoreBackup')}
               </h3>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Tölts vissza egy korábban elmentett .json fájlt
+                {t('restoreDesc')}
               </p>
             </div>
 
@@ -281,10 +281,10 @@ export const BackupView: React.FC<BackupViewProps> = ({
             <label className="border-2 border-dashed border-border hover:border-primary/60 rounded-xl p-5 flex flex-col items-center justify-center cursor-pointer transition-colors bg-secondary/10 hover:bg-secondary/30">
               <Upload className="w-8 h-8 text-muted-foreground mb-2" />
               <span className="text-xs font-semibold text-foreground">
-                {isImporting ? 'Feldolgozás...' : 'Kattints ide a JSON fájl kiválasztásához'}
+                {isImporting ? 'Feldolgozás...' : t('clickToSelect')}
               </span>
               <span className="text-[11px] text-muted-foreground mt-0.5">
-                .json formátum támogatott
+                {t('jsonSupported')}
               </span>
               <input
                 type="file"
@@ -298,7 +298,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
 
           <div className="pt-4 border-t border-border mt-4 text-[11px] text-muted-foreground flex items-center gap-1.5">
             <RefreshCw className="w-3.5 h-3.5 text-primary" />
-            Visszatöltés után az alkalmazás automatikusan frissíti az összes kimutatást.
+            {t('autoRefresh')}
           </div>
         </div>
 
