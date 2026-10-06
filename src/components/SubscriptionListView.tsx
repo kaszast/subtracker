@@ -17,7 +17,7 @@ import { Archive,
   Power,
   AlertCircle
  } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n';
+import { useLanguage, getTranslatedCategory } from '@/lib/i18n';
 
 interface SubscriptionListViewProps {
   subscriptions: Subscription[];
@@ -49,7 +49,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
     const matchesSearch = sub.name.toLowerCase().includes(search.toLowerCase()) ||
                           sub.paymentMethod?.toLowerCase().includes(search.toLowerCase()) ||
                           sub.notes?.toLowerCase().includes(search.toLowerCase());
-    const matchesCat = selectedCategory === 'all' || sub.category === selectedCategory;
+    const matchesCat = selectedCategory === 'all' || getTranslatedCategory(t, sub.category) === selectedCategory;
     
     let matchesStat = true;
     if (selectedStatus === 'active') matchesStat = sub.isActive;
@@ -89,7 +89,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="{t('searchPlaceholder')}"
+            placeholder={t('searchPlaceholder')}
             className="w-full pl-9 pr-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
           />
         </div>
@@ -104,7 +104,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
           >
             <option value="all">{t('allCategories')}</option>
             {ALL_CATEGORIES.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
+              <option key={getTranslatedCategory(t, cat)} value={getTranslatedCategory(t, cat)}>{getTranslatedCategory(t, cat)}</option>
             ))}
           </select>
 
@@ -114,9 +114,9 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
             className="px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
           >
             <option value="all">{t('filterAll')}</option>
-            <option value="active">Csak aktív</option>
-            <option value="inactive">Szüneteltetett</option>
-            <option value="trial">Csak próbaidőszak</option>
+            <option value="active">{t('filterActive')}</option>
+            <option value="inactive">{t('pausedSub')}</option>
+            <option value="trial">{t('filterTrial')}</option>
           </select>
 
           <select
@@ -207,7 +207,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                           )}
                         </div>
                         <span className="text-[11px] text-muted-foreground block truncate">
-                          {sub.category}
+                          {getTranslatedCategory(t, sub.category)}
                         </span>
                       </div>
                     </div>
@@ -244,7 +244,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                       </button>
                       <button
                         onClick={() => {
-                          if (confirm(`Biztosan törölni szeretnéd a(z) ${sub.name} előfizetést?`)) {
+                          if (confirm(`${t('confirmDelete')} ${sub.name}`)) {
                             onDelete(sub.id);
                           }
                         }}
@@ -330,7 +330,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                           <span>{sub.name}</span>
                         </div>
                       </td>
-                      <td className="py-3 px-4 text-muted-foreground">{sub.category}</td>
+                      <td className="py-3 px-4 text-muted-foreground">{getTranslatedCategory(t, sub.category)}</td>
                       <td className="py-3 px-4 font-bold text-foreground">
                         {formatMoney(sub.amount, sub.currency)}
                       </td>
@@ -395,7 +395,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                           </button>
                           <button
                             onClick={() => {
-                              if (confirm(`Biztosan törölni szeretnéd a(z) ${sub.name} előfizetést?`)) {
+                              if (confirm(`${t('confirmDelete')} ${sub.name}`)) {
                                 onDelete(sub.id);
                               }
                             }}

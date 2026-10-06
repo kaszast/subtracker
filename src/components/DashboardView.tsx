@@ -15,7 +15,7 @@ import {
   FileDown,
   Clock
 } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n';
+import { useLanguage, getTranslatedCategory } from '@/lib/i18n';
 
 interface DashboardViewProps {
   subscriptions: Subscription[];
@@ -258,7 +258,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                           {sub.name}
                         </div>
                         <div className="text-xs text-muted-foreground truncate">
-                          {sub.category} &bull; {percentOfTotal}% of total
+                          {getTranslatedCategory(t, sub.category)} &bull; {percentOfTotal}% of total
                         </div>
                       </div>
                     </div>

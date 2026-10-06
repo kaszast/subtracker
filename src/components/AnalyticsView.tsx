@@ -13,7 +13,7 @@ import {
   TrendingDown,
   Info
 , Calendar } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n';
+import { useLanguage, getTranslatedCategory } from '@/lib/i18n';
 import { 
   PieChart, 
   Pie, 

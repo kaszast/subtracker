@@ -11,7 +11,7 @@ import {
   Clock,
   ExternalLink
 } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n';
+import { useLanguage, getTranslatedCategory } from '@/lib/i18n';
 
 interface CalendarViewProps {
   subscriptions: Subscription[];
@@ -285,7 +285,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                         <span className="text-xs font-bold text-foreground truncate">{sub.name}</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground">{sub.category}</span>
+                        <span className="text-muted-foreground">{getTranslatedCategory(t, sub.category)}</span>
                         <span className="font-bold text-foreground">
                           {formatMoney(sub.amount, sub.currency)}
                         </span>

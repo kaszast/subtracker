@@ -17,6 +17,7 @@ import {
   Check,
   TrendingUp
 } from 'lucide-react';
+import { useLanguage, getTranslatedCategory } from '@/lib/i18n';
 
 interface SubscriptionModalProps {
   isOpen: boolean;
@@ -31,6 +32,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
   onSave,
   initialSubscription
 }) => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'presets' | 'custom'>('presets');
   const [presetSearch, setPresetSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -171,10 +173,10 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <div>
             <h2 className="text-lg font-bold text-foreground">
-              {initialSubscription ? 'Előfizetés módosítása' : 'Új előfizetés hozzáadása'}
+              {initialSubscription ? t('editSubscription') : t('addSubscription')}
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
-              {initialSubscription ? 'Módosítsd az előfizetés paramétereit' : 'Válassz a népszerű katalógusból vagy add meg kézzel'}
+              {initialSubscription ? t('editSubscriptionDesc') : t('addSubscriptionDesc')}
             </p>
           </div>
           <button
@@ -197,7 +199,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
               }`}
             >
               <Sparkles className="w-4 h-4" />
-              Katalógusból választás ({PRESET_SUBSCRIPTIONS.length}+)
+              {t('fromCatalog')} ({PRESET_SUBSCRIPTIONS.length}+)
             </button>
             <button
               onClick={() => setActiveTab('custom')}
@@ -208,7 +210,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
               }`}
             >
               <Sliders className="w-4 h-4" />
-              Kézi felvitel & Testreszabás
+              {t('customEntry')}
             </button>
           </div>
         )}
@@ -225,7 +227,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     type="text"
                     value={presetSearch}
                     onChange={(e) => setPresetSearch(e.target.value)}
-                    placeholder="Keresés (pl. Netflix, Spotify, Gemini, ChatGPT...)"
+                    placeholder="Keresés (e.g. Netflix, Spotify, Gemini, ChatGPT...)"
                     className="w-full pl-9 pr-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   />
                 </div>
@@ -236,7 +238,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                 >
                   <option value="all">Minden kategória</option>
                   {ALL_CATEGORIES.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
+                    <option key={getTranslatedCategory(t, cat)} value={getTranslatedCategory(t, cat)}>{getTranslatedCategory(t, cat)}</option>
                   ))}
                 </select>
               </div>
@@ -280,21 +282,21 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="sm:col-span-1">
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Szolgáltatás neve *
+                    {t('serviceName')} *
                   </label>
                   <input
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="pl. Netflix"
+                    placeholder="e.g. Netflix"
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Összeg *
+                    {t('amount')} *
                   </label>
                   <input
                     type="number"
@@ -302,14 +304,14 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     required
                     value={amount}
                     onChange={(e) => setAmount(e.target.value === '' ? '' : parseFloat(e.target.value))}
-                    placeholder="pl. 3490"
+                    placeholder="e.g. 3490"
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Pénznem
+                    {t('currency')}
                   </label>
                   <select
                     value={currency}
@@ -324,27 +326,27 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                 </div>
               </div>
 
-              {/* Ciklus & Következő levonás & Kategória */}
+              {/* Ciklus & Következő levonás & {t('category')} */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Számlázási ciklus
+                    {t('billingCycle')}
                   </label>
                   <select
                     value={billingCycle}
                     onChange={(e) => setBillingCycle(e.target.value as BillingCycle)}
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   >
-                    <option value="monthly">Havi</option>
-                    <option value="yearly">Éves</option>
-                    <option value="quarterly">Negyedéves</option>
-                    <option value="weekly">Heti</option>
+                    <option value="monthly">{t('monthly')}</option>
+                    <option value="yearly">{t('yearly')}</option>
+                    <option value="quarterly">{t('quarterly')}</option>
+                    <option value="weekly">{t('weekly')}</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Következő levonási dátum *
+                    {t('nextBillingDate')} *
                   </label>
                   <input
                     type="date"
@@ -357,7 +359,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
 
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Kategória
+                    {t('category')}
                   </label>
                   <select
                     value={category}
@@ -365,7 +367,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   >
                     {ALL_CATEGORIES.map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
+                      <option key={getTranslatedCategory(t, cat)} value={getTranslatedCategory(t, cat)}>{getTranslatedCategory(t, cat)}</option>
                     ))}
                   </select>
                 </div>
@@ -375,20 +377,20 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Fizetési mód (opcionális)
+                    {t('paymentMethodOpt')}
                   </label>
                   <input
                     type="text"
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
-                    placeholder="pl. Revolut Virtual, OTP Főkártya, PayPal"
+                    placeholder="e.g. Revolut Virtual, PayPal"
                     className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    Szolgáltatás weboldala (opcionális)
+                    {t('websiteOpt')}
                   </label>
                   <input
                     type="url"
@@ -405,10 +407,10 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-xs font-semibold text-foreground block">
-                      Aktív előfizetés
+                      {t('activeSubscription')}
                     </span>
                     <span className="text-[11px] text-muted-foreground">
-                      Az inaktív / szüneteltetett tételek nem számítanak bele a havi összköltségbe
+                      {t('inactiveDesc')}
                     </span>
                   </div>
                   <input
@@ -422,10 +424,10 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                 <div className="pt-2 border-t border-border flex items-center justify-between">
                   <div>
                     <span className="text-xs font-semibold text-foreground block">
-                      Ingyenes próbaidőszak (Trial)
+                      {t('freeTrial')}
                     </span>
                     <span className="text-[11px] text-muted-foreground">
-                      Jelölés próbaidőszakos előfizetésekhez automatikus riasztással
+                      {t('trialDesc')}
                     </span>
                   </div>
                   <input
@@ -454,13 +456,13 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
               {/* Jegyzetek */}
               <div>
                 <label className="block text-xs font-medium text-foreground mb-1">
-                  Megjegyzés (opcionális)
+                  {t('notesOpt')}
                 </label>
                 <textarea
                   rows={2}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="pl. Családi csomag, lemondani ha nincs kihasználva..."
+                  placeholder="e.g. Family plan..."
                   className="w-full px-3 py-2 rounded-xl border border-border bg-secondary text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm"
                 />
               </div>
@@ -470,7 +472,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                 <div className="pt-4 border-t border-border mt-4">
                   <h4 className="text-xs font-semibold text-foreground mb-3 flex items-center gap-1.5">
                     <TrendingUp className="w-3.5 h-3.5" />
-                    Ártörténet és Infláció
+                    {t('priceHistory')}
                   </h4>
                   {loadingHistory ? (
                     <div className="text-[11px] text-muted-foreground">Betöltés...</div>
@@ -489,7 +491,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
                     </div>
                   ) : (
                     <div className="text-[11px] text-muted-foreground bg-background p-2 rounded-lg border border-border text-center">
-                      Nincs rögzített árváltozás.
+                      {t('noHistory')}
                     </div>
                   )}
                 </div>
@@ -505,7 +507,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
             onClick={onClose}
             className="px-4 py-2 rounded-xl border border-border text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           >
-            Mégse
+            {t('cancel')}
           </button>
 
           {activeTab === 'custom' && (
@@ -516,7 +518,7 @@ export const SubscriptionModal: React.FC<SubscriptionModalProps> = ({
               className="flex items-center gap-1.5 px-5 py-2 rounded-xl bg-primary hover:bg-accent text-primary-foreground text-xs font-semibold shadow-sm transition-all disabled:opacity-50"
             >
               <Check className="w-4 h-4" />
-              {isSubmitting ? 'Mentés...' : initialSubscription ? 'Módosítások mentése' : 'Előfizetés mentése'}
+              {isSubmitting ? 'Mentés...' : initialSubscription ? t('saveChanges') : t('saveSubscription')}
             </button>
           )}
         </div>
