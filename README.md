@@ -2,6 +2,13 @@
 
 Egy prémium minőségű, letisztult, Docker konténerben futtatható webalkalmazás a különféle havi és éves előfizetések precíz követésére, naptári tervezésére, statisztikai elemzésére és adatmentésére.
 
+
+<div align="center">
+  <img src="docs/screenshots/dashboard-hu.png" alt="SubTracker Dashboard" width="800"/>
+  <br/>
+  <i>Irányítópult és havi költségvetés (Magyar nyelvű felület)</i>
+</div>
+
 ---
 
 ## Főbb Funkciók
@@ -125,6 +132,13 @@ Az alkalmazás alapértelmezetten a `http://localhost:3000` címen érhető el, 
 # SubTracker - Modern Subscription Manager Web App
 
 A premium-quality, clean web application deployable in a Docker container for the precise tracking, calendar planning, statistical analysis, and data backup of various monthly and annual subscriptions.
+
+
+<div align="center">
+  <img src="docs/screenshots/dashboard-en.png" alt="SubTracker Dashboard" width="800"/>
+  <br/>
+  <i>Dashboard and Monthly Budget (English interface)</i>
+</div>
 
 ---
 
