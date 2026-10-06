@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Alapértelmezett: Obsidian Slate (Dark) */
+  --radius: 0.625rem;
+  --background: #0b0f17;
+  --foreground: #f1f5f9;
+  --card: #111827;
+  --card-foreground: #f8fafc;
+  --popover: #111827;
+  --popover-foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #cbd5e1;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #1f293d;
+  --input: #1f293d;
+  --ring: #3b82f6;
+}
+
+/* 1. obsidian: Obsidian Slate (Deep dark slate) */
+[data-theme="obsidian"] {
+  --background: #090d16;
+  --foreground: #f1f5f9;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+  --primary: #38bdf8;
+  --primary-foreground: #082f49;
+  --secondary: #1e293b;
+  --secondary-foreground: #cbd5e1;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #0284c7;
+  --accent-foreground: #ffffff;
+  --destructive: #f87171;
+  --destructive-foreground: #ffffff;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #38bdf8;
+}
+
+/* 2. porcelain: Minimal Porcelain (Light, editorial, clean) */
+[data-theme="porcelain"] {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #334155;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0f172a;
+}
+
+/* 3. nord: Nord Frost (Arctic slate & cool ice blue) */
+[data-theme="nord"] {
+  --background: #242933;
+  --foreground: #eceff4;
+  --card: #2e3440;
+  --card-foreground: #eceff4;
+  --popover: #2e3440;
+  --popover-foreground: #eceff4;
+  --primary: #88c0d0;
+  --primary-foreground: #2e3440;
+  --secondary: #3b4252;
+  --secondary-foreground: #d8dee9;
+  --muted: #3b4252;
+  --muted-foreground: #81a1c1;
+  --accent: #81a1c1;
+  --accent-foreground: #2e3440;
+  --destructive: #bf616a;
+  --destructive-foreground: #eceff4;
+  --border: #434c5e;
+  --input: #434c5e;
+  --ring: #88c0d0;
+}
+
+/* 4. tokyo: Tokyo Night (Calm deep night & lavender accents) */
+[data-theme="tokyo"] {
+  --background: #16161e;
+  --foreground: #c0caf5;
+  --card: #1a1b26;
+  --card-foreground: #c0caf5;
+  --popover: #1a1b26;
+  --popover-foreground: #c0caf5;
+  --primary: #7aa2f7;
+  --primary-foreground: #15161e;
+  --secondary: #24283b;
+  --secondary-foreground: #a9b1d6;
+  --muted: #24283b;
+  --muted-foreground: #565f89;
+  --accent: #bb9af7;
+  --accent-foreground: #15161e;
+  --destructive: #f7768e;
+  --destructive-foreground: #ffffff;
+  --border: #292e42;
+  --input: #292e42;
+  --ring: #7aa2f7;
+}
+
+/* 5. catppuccin: Catppuccin Mocha (Soft velvety dark) */
+[data-theme="catppuccin"] {
+  --background: #181825;
+  --foreground: #cdd6f4;
+  --card: #1e1e2e;
+  --card-foreground: #cdd6f4;
+  --popover: #1e1e2e;
+  --popover-foreground: #cdd6f4;
+  --primary: #cba6f7;
+  --primary-foreground: #11111b;
+  --secondary: #313244;
+  --secondary-foreground: #bac2de;
+  --muted: #313244;
+  --muted-foreground: #7f849c;
+  --accent: #89b4fa;
+  --accent-foreground: #11111b;
+  --destructive: #f38ba8;
+  --destructive-foreground: #11111b;
+  --border: #45475a;
+  --input: #45475a;
+  --ring: #cba6f7;
+}
+
+/* 6. forest: Emerald Forest (Deep botanical green & subtle sage) */
+[data-theme="forest"] {
+  --background: #081510;
+  --foreground: #ecfdf5;
+  --card: #0d2119;
+  --card-foreground: #ecfdf5;
+  --popover: #0d2119;
+  --popover-foreground: #ecfdf5;
+  --primary: #10b981;
+  --primary-foreground: #022c22;
+  --secondary: #132e23;
+  --secondary-foreground: #a7f3d0;
+  --muted: #132e23;
+  --muted-foreground: #6ee7b7;
+  --accent: #059669;
+  --accent-foreground: #ffffff;
+  --destructive: #f43f5e;
+  --destructive-foreground: #ffffff;
+  --border: #1b3d30;
+  --input: #1b3d30;
+  --ring: #10b981;
+}
+
+/* 7. monochrome: Swiss Monochrome (Pure black, white, 50% neutral) */
+[data-theme="monochrome"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #121212;
+  --card-foreground: #ffffff;
+  --popover: #121212;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --secondary: #222222;
+  --secondary-foreground: #cccccc;
+  --muted: #222222;
+  --muted-foreground: #888888;
+  --accent: #e5e5e5;
+  --accent-foreground: #000000;
+  --destructive: #ff4d4f;
+  --destructive-foreground: #ffffff;
+  --border: #2e2e2e;
+  --input: #2e2e2e;
+  --ring: #ffffff;
+}
+
+/* 8. solarized: Solarized Dark (Refined classic dark) */
+[data-theme="solarized"] {
+  --background: #00212b;
+  --foreground: #93a1a1;
+  --card: #002b36;
+  --card-foreground: #eee8d5;
+  --popover: #002b36;
+  --popover-foreground: #eee8d5;
+  --primary: #2aa198;
+  --primary-foreground: #002b36;
+  --secondary: #073642;
+  --secondary-foreground: #93a1a1;
+  --muted: #073642;
+  --muted-foreground: #657b83;
+  --accent: #268bd2;
+  --accent-foreground: #ffffff;
+  --destructive: #dc322f;
+  --destructive-foreground: #ffffff;
+  --border: #0a4655;
+  --input: #0a4655;
+  --ring: #2aa198;
+}
+
+/* 9. sand: Warm Sand & Paper (Warm light theme) */
+[data-theme="sand"] {
+  --background: #fbf8f3;
+  --foreground: #292524;
+  --card: #ffffff;
+  --card-foreground: #292524;
+  --popover: #ffffff;
+  --popover-foreground: #292524;
+  --primary: #c2410c;
+  --primary-foreground: #ffffff;
+  --secondary: #f4efe6;
+  --secondary-foreground: #57534e;
+  --muted: #f4efe6;
+  --muted-foreground: #78716c;
+  --accent: #ea580c;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+  --border: #e7dfd5;
+  --input: #e7dfd5;
+  --ring: #c2410c;
+}
+
+/* 10. indigo: Midnight Indigo (Modern fintech navy) */
+[data-theme="indigo"] {
+  --background: #0a0e1a;
+  --foreground: #e2e8f0;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #1e1b4b;
+  --secondary-foreground: #c7d2fe;
+  --muted: #1e1b4b;
+  --muted-foreground: #818cf8;
+  --accent: #4f46e5;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #1f2544;
+  --input: #1f2544;
+  --ring: #6366f1;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Color-scheme támogatás a natív böngésző UI elemekhez */
+:root, [data-theme="obsidian"], [data-theme="nord"], [data-theme="tokyo"], [data-theme="catppuccin"], [data-theme="forest"], [data-theme="monochrome"], [data-theme="solarized"], [data-theme="indigo"] {
+  color-scheme: dark;
+}
+
+[data-theme="porcelain"], [data-theme="sand"] {
+  color-scheme: light;
+}
+
+/* Globális form input, select és textarea stílusok a témákhoz */
+input, select, textarea {
+  background-color: var(--secondary) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary) !important;
+  outline: none !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--muted-foreground) !important;
+  opacity: 0.8 !important;
+}
+
+select option {
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
+}

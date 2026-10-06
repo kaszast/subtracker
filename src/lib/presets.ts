@@ -1,0 +1,446 @@
+import { PresetSubscription } from '@/types';
+
+export const PRESET_SUBSCRIPTIONS: PresetSubscription[] = [
+  // Streaming & Videó
+  {
+    id: 'netflix',
+    name: 'Netflix',
+    domain: 'netflix.com',
+    defaultAmount: 3490,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Streaming & Média',
+    icon: 'Tv',
+    color: '#E50914',
+    url: 'https://netflix.com',
+    description: 'Filmek és sorozatok streamelése Standard/Premium csomagban'
+  },
+  {
+    id: 'youtube-premium',
+    name: 'YouTube Premium',
+    domain: 'youtube.com',
+    defaultAmount: 2390,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Streaming & Média',
+    icon: 'Youtube',
+    color: '#FF0000',
+    url: 'https://youtube.com/premium',
+    description: 'Reklámmentes videónézés és YouTube Music háttérben lejátszással'
+  },
+  {
+    id: 'apple-tv',
+    name: 'Apple TV+',
+    domain: 'apple.com',
+    defaultAmount: 2790,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Streaming & Média',
+    icon: 'Apple',
+    color: '#000000',
+    url: 'https://tv.apple.com',
+    description: 'Apple Originals filmek és sorozatok 4K HDR minőségben'
+  },
+  {
+    id: 'disney-plus',
+    name: 'Disney+',
+    domain: 'disneyplus.com',
+    defaultAmount: 3090,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Streaming & Média',
+    icon: 'Film',
+    color: '#113CCF',
+    url: 'https://disneyplus.com',
+    description: 'Disney, Pixar, Marvel, Star Wars és National Geographic tartalmak'
+  },
+  {
+    id: 'max',
+    name: 'Max (HBO Max)',
+    domain: 'max.com',
+    defaultAmount: 2790,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Streaming & Média',
+    icon: 'PlayCircle',
+    color: '#002BE7',
+    url: 'https://max.com',
+    description: 'Warner Bros, HBO, Discovery és DC tartalmak'
+  },
+  {
+    id: 'amazon-prime',
+    name: 'Amazon Prime Video',
+    domain: 'primevideo.com',
+    defaultAmount: 1890,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Streaming & Média',
+    icon: 'ShoppingBag',
+    color: '#00A8E1',
+    url: 'https://primevideo.com',
+    description: 'Prime Video streaming és ingyenes szállítási előnyök'
+  },
+
+  // AI & Produktivitás
+  {
+    id: 'google-ai',
+    name: 'Google AI (Gemini Advanced)',
+    domain: 'googleaigeminiadvanced.com',
+    defaultAmount: 8290,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'AI & Produktivitás',
+    icon: 'Sparkles',
+    color: '#4285F4',
+    url: 'https://one.google.com/explore-plan/gemini-advanced',
+    description: 'Google One AI Premium csomag 2TB tárhellyel és Gemini 1.5 Pro modellel'
+  },
+  {
+    id: 'chatgpt-plus',
+    name: 'ChatGPT Plus (OpenAI)',
+    domain: 'openai.com',
+    defaultAmount: 20,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'AI & Produktivitás',
+    icon: 'Bot',
+    color: '#10A37F',
+    url: 'https://chat.openai.com',
+    description: 'GPT-4o, Canvas, DALL-E képgenerálás és prioritásos hozzáférés'
+  },
+  {
+    id: 'claude-pro',
+    name: 'Claude Pro (Anthropic)',
+    domain: 'claudeproanthropic.com',
+    defaultAmount: 20,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'AI & Produktivitás',
+    icon: 'BrainCircuit',
+    color: '#D97706',
+    url: 'https://claude.ai',
+    description: 'Claude 3.5 Sonnet, 5x több üzenet és Artifacts funkció'
+  },
+  {
+    id: 'github-copilot',
+    name: 'GitHub Copilot',
+    domain: 'github.com',
+    defaultAmount: 10,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'AI & Produktivitás',
+    icon: 'Github',
+    color: '#24292F',
+    url: 'https://github.com/features/copilot',
+    description: 'AI kódkiegészítő és asszisztens IDE fejlesztői környezethez'
+  },
+  {
+    id: 'midjourney',
+    name: 'Midjourney',
+    domain: 'midjourney.com',
+    defaultAmount: 10,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'AI & Produktivitás',
+    icon: 'Palette',
+    color: '#4338CA',
+    url: 'https://midjourney.com',
+    description: 'Generatív képgeneráló szoftver Discordon és webes felületen'
+  },
+  {
+    id: 'notion',
+    name: 'Notion Plus',
+    domain: 'notionplus.com',
+    defaultAmount: 10,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'AI & Produktivitás',
+    icon: 'FileText',
+    color: '#000000',
+    url: 'https://notion.so',
+    description: 'Korlátlan blokkok, fájlfeltöltés és csoportmunka felület'
+  },
+
+  // Zene & Hang
+  {
+    id: 'spotify',
+    name: 'Spotify Premium',
+    domain: 'spotify.com',
+    defaultAmount: 1990,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Zene & Podcast',
+    icon: 'Music',
+    color: '#1DB954',
+    url: 'https://spotify.com',
+    description: 'Reklámmentes zenehallgatás és podcastok offline letöltéssel'
+  },
+  {
+    id: 'apple-music',
+    name: 'Apple Music',
+    domain: 'apple.com',
+    defaultAmount: 1990,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Zene & Podcast',
+    icon: 'Disc',
+    color: '#FA243C',
+    url: 'https://music.apple.com',
+    description: 'Térbeli hangzás (Spatial Audio) és Lossless minőségű zenei streaming'
+  },
+  {
+    id: 'tidal',
+    name: 'TIDAL HiFi',
+    domain: 'tidalhifi.com',
+    defaultAmount: 2490,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Zene & Podcast',
+    icon: 'Radio',
+    color: '#000000',
+    url: 'https://tidal.com',
+    description: 'Hi-Res FLAC és Dolby Atmos stúdió minőségű streaming'
+  },
+
+  // Felhő & Tárhely
+  {
+    id: 'google-one',
+    name: 'Google One (100GB / 2TB)',
+    domain: 'google.com',
+    defaultAmount: 690,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Fejlesztés & Felhő',
+    icon: 'Cloud',
+    color: '#34A853',
+    url: 'https://one.google.com',
+    description: 'Bővített Google Fotók, Drive és Gmail tárhely megosztással'
+  },
+  {
+    id: 'icloud',
+    name: 'Apple iCloud+ (50GB / 200GB)',
+    domain: 'appleicloud50gb200gb.com',
+    defaultAmount: 399,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Fejlesztés & Felhő',
+    icon: 'CloudRain',
+    color: '#0070F3',
+    url: 'https://apple.com/icloud',
+    description: 'iCloud tárhely, Privát átjátszó és E-mail-cím elrejtése funkció'
+  },
+  {
+    id: 'dropbox',
+    name: 'Dropbox Plus',
+    domain: 'dropboxplus.com',
+    defaultAmount: 11.99,
+    defaultCurrency: 'EUR',
+    defaultCycle: 'monthly',
+    category: 'Fejlesztés & Felhő',
+    icon: 'Box',
+    color: '#0061FF',
+    url: 'https://dropbox.com',
+    description: '2 TB titkosított felhőtárhely és szinkronizáció'
+  },
+
+  // Szoftver & Tervezés
+  {
+    id: 'adobe-creative-cloud',
+    name: 'Adobe Creative Cloud',
+    domain: 'adobe.com',
+    defaultAmount: 25000,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Szoftver & Eszközök',
+    icon: 'Layers',
+    color: '#FF0000',
+    url: 'https://adobe.com',
+    description: 'Photoshop, Illustrator, Premiere Pro, After Effects és InDesign'
+  },
+  {
+    id: 'figma',
+    name: 'Figma Professional',
+    domain: 'figmaprofessional.com',
+    defaultAmount: 15,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'Szoftver & Eszközök',
+    icon: 'Figma',
+    color: '#F24E1E',
+    url: 'https://figma.com',
+    description: 'UI/UX dizájn, prototípus készítés és csapatos kollaboráció'
+  },
+  {
+    id: 'canva-pro',
+    name: 'Canva Pro',
+    domain: 'canvapro.com',
+    defaultAmount: 3990,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Szoftver & Eszközök',
+    icon: 'LayoutTemplate',
+    color: '#00C4CC',
+    url: 'https://canva.com',
+    description: 'Prémium sablonok, márkakészlet és háttéreltávolító'
+  },
+  {
+    id: 'jetbrains',
+    name: 'JetBrains All Products Pack',
+    domain: 'jetbrainsallproductspack.com',
+    defaultAmount: 28.9,
+    defaultCurrency: 'EUR',
+    defaultCycle: 'monthly',
+    category: 'Fejlesztés & Felhő',
+    icon: 'Code',
+    color: '#000000',
+    url: 'https://jetbrains.com',
+    description: 'IntelliJ IDEA, WebStorm, PyCharm, CLion és GoLand IDE csomag'
+  },
+  {
+    id: 'microsoft-365',
+    name: 'Microsoft 365 Personal',
+    domain: 'microsoft.com',
+    defaultAmount: 2990,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Szoftver & Eszközök',
+    icon: 'Briefcase',
+    color: '#D83B01',
+    url: 'https://microsoft.com/microsoft-365',
+    description: 'Word, Excel, PowerPoint és 1TB OneDrive felhőtárhely'
+  },
+  {
+    id: 'onepassword',
+    name: '1Password',
+    domain: '1password.com',
+    defaultAmount: 3.5,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'Szoftver & Eszközök',
+    icon: 'KeyRound',
+    color: '#0A85EA',
+    url: 'https://1password.com',
+    description: 'Biztonságos jelszókezelő és digitális széf minden eszközre'
+  },
+  {
+    id: 'nordvpn',
+    name: 'NordVPN',
+    domain: 'nordvpn.com',
+    defaultAmount: 4.5,
+    defaultCurrency: 'EUR',
+    defaultCycle: 'monthly',
+    category: 'Szoftver & Eszközök',
+    icon: 'Shield',
+    color: '#4687FF',
+    url: 'https://nordvpn.com',
+    description: 'Titkosított VPN és kiberbiztonsági védelem fenyegetések ellen'
+  },
+
+  // Játékok
+  {
+    id: 'playstation-plus',
+    name: 'PlayStation Plus Extra',
+    domain: 'playstation.com',
+    defaultAmount: 4800,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Játék',
+    icon: 'Gamepad2',
+    color: '#003791',
+    url: 'https://playstation.com/ps-plus',
+    description: 'Online multiplayer és több száz letölthető PS4/PS5 játék katalógus'
+  },
+  {
+    id: 'xbox-game-pass',
+    name: 'Xbox Game Pass Ultimate',
+    domain: 'xbox.com',
+    defaultAmount: 4790,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Játék',
+    icon: 'Gamepad',
+    color: '#107C10',
+    url: 'https://xbox.com/game-pass',
+    description: 'Több mint 100 PC és konzol játék, EA Play és Cloud Gaming'
+  },
+  {
+    id: 'nintendo-switch-online',
+    name: 'Nintendo Switch Online',
+    domain: 'nintendo.com',
+    defaultAmount: 1400,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Játék',
+    icon: 'Tv2',
+    color: '#E60012',
+    url: 'https://nintendo.com/switch/online',
+    description: 'Online játék és klasszikus NES/SNES játékgyűjtemény'
+  },
+
+  // Fitnesz & Életmód
+  {
+    id: 'duolingo-plus',
+    name: 'Duolingo Super',
+    domain: 'duolingosuper.com',
+    defaultAmount: 2200,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Hírek & Oktatás',
+    icon: 'Languages',
+    color: '#58CC02',
+    url: 'https://duolingo.com',
+    description: 'Korlátlan életek, reklámmentes nyelvtanulás és személyre szabott gyakorlatok'
+  },
+  {
+    id: 'strava',
+    name: 'Strava Subscription',
+    domain: 'stravasubscription.com',
+    defaultAmount: 2500,
+    defaultCurrency: 'HUF',
+    defaultCycle: 'monthly',
+    category: 'Fitnesz & Életmód',
+    icon: 'Activity',
+    color: '#FC4C02',
+    url: 'https://strava.com',
+    description: 'Részletes útvonaltervezés, szegmens ranglisták és edzéselemzés'
+  },
+  {
+    id: 'headspace',
+    name: 'Headspace',
+    domain: 'headspace.com',
+    defaultAmount: 12.99,
+    defaultCurrency: 'USD',
+    defaultCycle: 'monthly',
+    category: 'Fitnesz & Életmód',
+    icon: 'Heart',
+    color: '#F47D31',
+    url: 'https://headspace.com',
+    description: 'Vezetett meditáció, alvást segítő hangok és mindfulness gyakorlatok'
+  }
+];
+
+export const ALL_CATEGORIES = [
+  'Streaming & Média',
+  'AI & Produktivitás',
+  'Fejlesztés & Felhő',
+  'Szoftver & Eszközök',
+  'Zene & Podcast',
+  'Játék',
+  'Hírek & Oktatás',
+  'Fitnesz & Életmód',
+  'Közmű & Pénzügy',
+  'Egyéb'
+] as const;
+
+export const CATEGORY_COLORS: Record<string, string> = {
+  'Streaming & Média': '#E50914',
+  'AI & Produktivitás': '#8B5CF6',
+  'Fejlesztés & Felhő': '#3B82F6',
+  'Szoftver & Eszközök': '#F59E0B',
+  'Zene & Podcast': '#10B981',
+  'Játék': '#EC4899',
+  'Hírek & Oktatás': '#14B8A6',
+  'Fitnesz & Életmód': '#F97316',
+  'Közmű & Pénzügy': '#6366F1',
+  'Egyéb': '#6B7280'
+};

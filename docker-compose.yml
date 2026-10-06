@@ -1,0 +1,13 @@
+services:
+  subscription-manager:
+    image: subscription-manager:latest
+    container_name: subscription_manager
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    volumes:
+      - /volume1/docker/subtracker/data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_PATH=/app/data/subscriptions.db
