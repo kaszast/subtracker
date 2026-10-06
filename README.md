@@ -1,5 +1,8 @@
 # SubTracker - Modern Előfizetés Kezelő Webalkalmazás
 
+🌍 *[Read this in English](#subtracker---modern-subscription-manager-web-app)*
+
+
 Egy prémium minőségű, letisztult, Docker konténerben futtatható webalkalmazás a különféle havi és éves előfizetések precíz követésére, naptári tervezésére, statisztikai elemzésére és adatmentésére.
 
 
