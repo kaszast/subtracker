@@ -48,10 +48,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       {/* KPI Kártyák */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        {/* 1. Havi összköltség */}
+        {/* 1. {t('totalMonthly').toUpperCase()} */}
         <div className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:border-primary/40 transition-colors">
           <div className="flex items-center justify-between text-muted-foreground mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider">Havi összköltség</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">{t('totalMonthly').toUpperCase()}</span>
             <div className="p-2 rounded-xl bg-primary/10 text-primary">
               <CreditCard className="w-4 h-4" />
             </div>
@@ -67,7 +67,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {/* 2. Éves vetület */}
         <div className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:border-primary/40 transition-colors">
           <div className="flex items-center justify-between text-muted-foreground mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider">Éves vetített költség</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">{t('totalYearly').toUpperCase()}</span>
             <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500">
               <TrendingUp className="w-4 h-4" />
             </div>
@@ -83,7 +83,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {/* 3. Aktív előfizetések */}
         <div className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:border-primary/40 transition-colors">
           <div className="flex items-center justify-between text-muted-foreground mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider">Aktív szolgáltatások</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">{t('activeCount').toUpperCase()}</span>
             <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500">
               <Sparkles className="w-4 h-4" />
             </div>
@@ -105,13 +105,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {/* 4. Közelgő levonások */}
         <div className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:border-primary/40 transition-colors">
           <div className="flex items-center justify-between text-muted-foreground mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider">Levonás a héten</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">{t('upcoming7Days').toUpperCase()}</span>
             <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
               <Clock className="w-4 h-4" />
             </div>
           </div>
           <div className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-            {stats.upcomingCount7Days} <span className="text-sm font-normal text-muted-foreground">esedékes</span>
+            {stats.upcomingCount7Days} <span className="text-sm font-normal text-muted-foreground">{t('upcoming7Days')}</span>
           </div>
           <div className="text-xs text-muted-foreground mt-2">
             Expected in next 7 days
@@ -145,7 +145,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
       )}
 
-      {/* Kétoszlopos szekció: Közelgő esedékességek & Legnagyobb tételek */}
+      {/* Kétoszlopos szekció: Közelgő {t('upcoming7Days')}ségek & Legnagyobb tételek */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Bal oszlop: Közelgő levonások */}
@@ -197,7 +197,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                           )}
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          {sub.nextBillingDate} &bull; {daysLeft === 0 ? 'Ma esedékes!' : `${daysLeft} nap múlva`}
+                          {sub.nextBillingDate} &bull; {daysLeft === 0 ? `Ma ${t('upcoming7Days')}!` : `${daysLeft} nap múlva`}
                         </div>
                       </div>
                     </div>
@@ -264,7 +264,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     </div>
                     <div className="text-right shrink-0 ml-3">
                       <div className="text-sm font-bold text-foreground">
-                        {formatMoney(monthlyHuf, 'HUF')} <span className="text-[11px] font-normal text-muted-foreground">/ hó</span>
+                        {formatMoney(monthlyHuf, 'HUF')} <span className="text-[11px] font-normal text-muted-foreground">/ {t('monthly')}</span>
                       </div>
                       <div className="text-[10px] text-muted-foreground">
                         {formatMoney(sub.amount, sub.currency)} ({sub.billingCycle})

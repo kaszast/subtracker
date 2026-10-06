@@ -290,7 +290,7 @@ export const SubscriptionListView: React.FC<SubscriptionListViewProps> = ({
                     </span>
                     {sub.currency !== 'HUF' && (
                       <span className="text-[10px] text-muted-foreground block">
-                        ~{formatMoney(monthlyHuf, 'HUF')} / hó
+                        ~{formatMoney(monthlyHuf, 'HUF')} / {t('monthly')}
                       </span>
                     )}
                   </div>

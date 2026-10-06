@@ -25,11 +25,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenNe
   const { t, lang, setLang } = useLanguage();
 
   const navItems = [
-    { id: 'dashboard', label: 'Áttekintés', icon: LayoutDashboard },
-    { id: 'subscriptions', label: 'Előfizetéseim', icon: ListFilter },
+    { id: 'dashboard', label: t('dashboard'), icon: LayoutDashboard },
+    { id: 'subscriptions', label: t('subscriptions'), icon: ListFilter },
     { id: 'calendar', label: t('calendar'), icon: CalendarDays },
     { id: 'analytics', label: t('analytics'), icon: PieChart },
-    { id: 'backup', label: 'Mentés & Import', icon: HardDriveDownload },
+    { id: 'backup', label: t('backup'), icon: HardDriveDownload },
   ];
 
   return (
@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenNe
                 SubTracker
               </span>
               <span className="text-[11px] text-muted-foreground hidden sm:block">
-                Előfizetés Menedzser
+                {t('subscriptions')}
               </span>
             </div>
           </div>
@@ -90,8 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenNe
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary hover:bg-accent text-primary-foreground text-xs sm:text-sm font-semibold transition-all shadow-sm hover:shadow"
             >
               <PlusCircle className="w-4 h-4" />
-              <span className="hidden sm:inline">Új előfizetés</span>
-              <span className="sm:hidden">Új</span>
+              <span className="hidden sm:inline">{t('newSubscription')}</span>
+              <span className="sm:hidden">{t('newSubscription').substring(0, 3)}</span>
             </button>
           </div>
         </div>
