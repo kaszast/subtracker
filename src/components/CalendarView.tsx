@@ -260,7 +260,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
             <div className="border-b border-border pb-3 mb-4">
               <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
-                {selectedDayDate ? `{t('dailyDetails')}: ${selectedDayDate}` : t('selectDay')}
+                {selectedDayDate ? `${t('dailyDetails')}: ${selectedDayDate}` : t('selectDay')}
               </h3>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {t('clickDayDetails')}

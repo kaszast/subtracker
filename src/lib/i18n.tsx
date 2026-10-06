@@ -231,6 +231,11 @@ const translations = {
     placeholderNotes: 'pl. Családi csomag...',
     placeholderUrl: 'https://...',
     errorLoadingData: 'Hiba az adatok betöltésekor',
+    trialWarning: 'Aktív próbaidőszak figyelmeztetés',
+    trialWarningDesc: 'Ne felejtsd el időben lemondani, ha nem szeretnéd, hogy automatikusan megújuljon:',
+    manage: 'Kezelés',
+    inDays: 'nap múlva',
+    cardPayment: 'Kártyás fizetés',
   },
   en: {
     dashboard: 'Dashboard',
@@ -459,6 +464,11 @@ const translations = {
     placeholderNotes: 'e.g. Family plan...',
     placeholderUrl: 'https://...',
     errorLoadingData: 'Error loading data',
+    trialWarning: 'Active trial warning',
+    trialWarningDesc: 'Don\'t forget to cancel in time to avoid auto-renewal:',
+    manage: 'Manage',
+    inDays: 'days left',
+    cardPayment: 'Card payment',
   }
 };
 

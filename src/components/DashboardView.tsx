@@ -75,9 +75,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
             {formatMoney(stats.totalYearlyHuf, 'HUF')}
           </div>
-          <div className="text-xs text-muted-foreground mt-2">
-            Based on 12 months current state
-          </div>
+          <div className="text-xs text-muted-foreground mt-2">{t('basedOn12Months')}</div>
         </div>
 
         {/* 3. Aktív előfizetések */}
@@ -113,9 +111,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
             {stats.upcomingCount7Days} <span className="text-sm font-normal text-muted-foreground">{t('upcoming7Days')}</span>
           </div>
-          <div className="text-xs text-muted-foreground mt-2">
-            Expected in next 7 days
-          </div>
+          <div className="text-xs text-muted-foreground mt-2">{t('expectedNext7Days')}</div>
         </div>
       </div>
 
@@ -126,10 +122,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <AlertTriangle className="w-5 h-5 shrink-0" />
             <div>
               <div className="text-sm font-semibold text-foreground">
-                Aktív próbaidőszak figyelmeztetés ({trialSubs.length} db)
+                {t('trialWarning')} ({trialSubs.length})
               </div>
               <div className="text-xs text-muted-foreground">
-                Ne felejtsd el időben lemondani, ha nem szeretnéd, hogy automatikusan megújuljon: {' '}
+                {t('trialWarningDesc')} {' '}
                 <span className="text-foreground font-medium">
                   {trialSubs.map(s => s.name).join(', ')}
                 </span>
@@ -139,9 +135,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <button
             onClick={() => onNavigate('subscriptions')}
             className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-amber-500 text-white shrink-0 hover:bg-amber-600 transition-colors"
-          >
-            Kezelés
-          </button>
+          >{t('manage')}</button>
         </div>
       )}
 
@@ -156,16 +150,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 <Calendar className="w-4 h-4 text-primary" />
                 {t('upcoming7Days')}
               </h3>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Next 7 days events in order
-              </p>
+              <p className="text-xs text-muted-foreground mt-0.5">{t('upcomingPaymentsSub')}</p>
             </div>
             <button
               onClick={() => onNavigate('calendar')}
               className="text-xs font-semibold text-primary hover:underline flex items-center gap-1"
-            >
-              Naptár nézet
-              <ChevronRight className="w-3.5 h-3.5" />
+            >{t('calendarView')}<ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -191,13 +181,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         <div className="text-sm font-semibold text-foreground truncate flex items-center gap-1.5">
                           {sub.name}
                           {sub.isTrial && (
-                            <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-500 font-medium">
-                              Próba
-                            </span>
+                            <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-500 font-medium">{t('isTrial')}</span>
                           )}
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          {sub.nextBillingDate} &bull; {daysLeft === 0 ? `Ma ${t('upcoming7Days')}!` : `${daysLeft} nap múlva`}
+                          {sub.nextBillingDate} &bull; {daysLeft === 0 ? `Ma!` : `${daysLeft} ${t('inDays')}`}
                         </div>
                       </div>
                     </div>
@@ -206,7 +194,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         {formatMoney(sub.amount, sub.currency)}
                       </div>
                       <div className="text-[11px] text-muted-foreground">
-                        {sub.paymentMethod || 'Kártyás fizetés'}
+                        {sub.paymentMethod || t('cardPayment')}
                       </div>
                     </div>
                   </div>
@@ -222,19 +210,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <div className="flex items-center justify-between pb-4 border-b border-border mb-4">
               <div>
                 <h3 className="font-bold text-sm sm:text-base text-foreground flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-emerald-500" />
-                  Top Expenses
-                </h3>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Sorted by monthly equivalent
-                </p>
+                  <TrendingUp className="w-4 h-4 text-emerald-500" />{t('topExpenses')}</h3>
+                <p className="text-xs text-muted-foreground mt-0.5">{t('topExpensesSub')}</p>
               </div>
               <button
                 onClick={() => onNavigate('analytics')}
                 className="text-xs font-semibold text-primary hover:underline flex items-center gap-1"
-              >
-                Részletes elemzés
-                <ChevronRight className="w-3.5 h-3.5" />
+              >{t('detailedAnalytics')}<ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
@@ -258,7 +240,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                           {sub.name}
                         </div>
                         <div className="text-xs text-muted-foreground truncate">
-                          {getTranslatedCategory(t, sub.category)} &bull; {percentOfTotal}% of total
+                          {getTranslatedCategory(t, sub.category)} &bull; {percentOfTotal}% {t('ofTotal')}
                         </div>
                       </div>
                     </div>
@@ -278,9 +260,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
           {/* Alsó gyorsművelet sáv */}
           <div className="pt-5 mt-5 border-t border-border flex items-center justify-between gap-3">
-            <span className="text-xs text-muted-foreground">
-              Generate report:
-            </span>
+            <span className="text-xs text-muted-foreground">{t('generateReport')}</span>
             <button
               onClick={onDownloadPdf}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-card hover:bg-muted text-xs font-semibold text-foreground transition-all shadow-sm"
